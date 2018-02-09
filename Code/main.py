@@ -170,4 +170,6 @@ while True:
     detct()
     
     print DataForQT
-    
+     
+        
+        
