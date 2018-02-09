@@ -163,6 +163,7 @@ LED(4)
              
 while True:
     
+    
     DataForQT = []
     
     GetTH()
