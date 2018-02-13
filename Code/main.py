@@ -172,6 +172,5 @@ while True:
     print DataForQT
                      
 
-            
 
             
