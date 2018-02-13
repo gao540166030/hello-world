@@ -11,3 +11,6 @@ The Powerpoint is available at https://prezi.com/view/XcmfoeFi8ZuTkDuknr3L/
 The demonstration of security monitoring system is available at https://www.youtube.com/watch?v=ISBn_PoPsAw
 
 The demonstration of the temperature and humidity detection module is available at https://www.youtube.com/watch?v=Rew0veGNES8
+
+
+Made by JIALEI GAO (Team 21)
