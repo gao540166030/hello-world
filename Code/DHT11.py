@@ -66,3 +66,6 @@ else:
   print "temperature :", temperature, "*C, humidity :", humidity, "% check :", check, ", tmp :", tmp  
   
 GPIO.cleanup()
+
+
+
