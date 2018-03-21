@@ -98,7 +98,7 @@ int main(void)
       }
       printf("[%d,%d,%d,%d]\n",dht11_val[2],dht11_val[0],HC_SR501_Flag,Slant_Flag); 
 
-      if((fp=fopen("data.txt","w+"))==NULL)//如果文件不存在，新建文件，写数据 
+      if((fp=fopen("/home/pi/mytest/hello-world/gaodata/testdata.txt","w+"))==NULL)//如果文件不存在，新建文件，写数据 
       { 
         //printf("Can not open file.\n"); 
         exit(0); 
