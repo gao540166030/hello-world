@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-//#include "mygauge1.h"
+#include "mygauge1.h"
 #include "mygauge2.h"
 //#include "mygauge3.h"
 //#include "mygauge4.h"
@@ -32,7 +32,8 @@ private:
     QVBoxLayout *mainLayout;
     QHBoxLayout *layout1;
 
-    //myGauge1 *gauge1;
+    myGauge1 *gauge1;
+    //myGauge1 *gaugeyellow;
     myGauge2 *gauge2;
 //    myGauge3 *gauge31;
 //    myGauge3 *gauge32;
@@ -65,7 +66,7 @@ private:
 //    myIndicator *myindicator4;
 //    myIndicator *myindicator5;
 
-    //QTimer *updateTimer1;
+    QTimer *updateTimer1;
     QTimer *updateTimer2;
 //    QTimer *updateTimer4;
 //    QTimer *updateTimer5;
@@ -86,10 +87,10 @@ private slots:
 //    void on_btnGauge4_clicked();
 //    void on_btnGauge3_clicked();
     void on_btnGauge2_clicked();
-//    void on_btnGauge1_clicked();
+    void on_btnGauge1_clicked();
 
     void ChangeVisible(bool b);
-//    void UpdateData1();
+    void UpdateData1();
     void UpdateData2();
 //    void UpdateData3(qreal value);
 //    void UpdateData4();

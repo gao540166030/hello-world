@@ -19,12 +19,6 @@ myGauge1::myGauge1(QWidget *parent) :
     m_okHand=0.7*m_longHand;
     m_shortHand=0.5*m_longHand;
     m_space=0.1*m_longHand;
-    graphcolor = Qt::green;
-}
-
-void myGauge1::SetGraphColor(QColor c)
-{
-    this->graphcolor=c;
 }
 
 void myGauge1::resetVariables(QPainter *painter)
@@ -38,7 +32,6 @@ void myGauge1::resetVariables(QPainter *painter)
     m_okHand=0.7*m_longHand;
     m_shortHand=0.5*m_longHand;
     m_space=0.1*m_longHand;
-
 }
 
 void myGauge1::paintEvent(QPaintEvent *)
@@ -66,8 +59,8 @@ void myGauge1::drawOuterCircle(QPainter* painter)
     painter->save();
 
     QRadialGradient outerGradient(m_center,m_outerRadius,m_center);
-    outerGradient.setColorAt(0.0,graphcolor);
-    outerGradient.setColorAt(0.5,graphcolor);
+    outerGradient.setColorAt(0.0,Qt::yellow);
+    outerGradient.setColorAt(0.5,Qt::yellow);
     outerGradient.setColorAt(0.95,QColor(200,200,200));
     outerGradient.setColorAt(1.0,QColor(130,130,130));
     //outerGradient.SETC

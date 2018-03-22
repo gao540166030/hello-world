@@ -12,8 +12,8 @@ frmMain::frmMain(QWidget *parent) :
 
     mainLayout=new QVBoxLayout();
     layout1=new QHBoxLayout();
-
-    //gauge1=new myGauge1(ui->fm);
+    //gaugeyellow =new myGauge1(ui->fm);
+    gauge1=new myGauge1(ui->fm);
     gauge2=new myGauge2(ui->fm);
     gauge2->setAnimating(true);
 
@@ -83,7 +83,7 @@ frmMain::frmMain(QWidget *parent) :
 //    myindicator5=new myIndicator(ui->fm);
 //    myindicator5->SetForeColor(Qt::cyan);
 
-    //mainLayout->addWidget(gauge1);
+    mainLayout->addWidget(gauge1);
     mainLayout->addWidget(gauge2);
 //    mainLayout->addWidget(gauge31);
 //    mainLayout->addWidget(gauge32);
@@ -120,9 +120,9 @@ frmMain::frmMain(QWidget *parent) :
 
     ui->fm->setLayout(mainLayout);
 
-//    updateTimer1=new QTimer(this);
-//    updateTimer1->setInterval(3000);
-//    connect(updateTimer1,SIGNAL(timeout()),this,SLOT(UpdateData1()));
+    updateTimer1=new QTimer(this);
+    updateTimer1->setInterval(3000);
+    connect(updateTimer1,SIGNAL(timeout()),this,SLOT(UpdateData1()));
 
     updateTimer2=new QTimer(this);
     updateTimer2->setInterval(1000);
@@ -162,7 +162,7 @@ frmMain::~frmMain()
 
 void frmMain::ChangeVisible(bool b)
 {
-    //gauge1->setVisible(b);
+    gauge1->setVisible(b);
 
     gauge2->setVisible(b);
 
@@ -207,27 +207,70 @@ void frmMain::ChangeVisible(bool b)
 //    updateTimer5->stop();
 //    updateTimer4->stop();
     updateTimer2->stop();
-    //updateTimer1->stop();
+    updateTimer1->stop();
 }
 
-//void frmMain::on_btnGauge1_clicked()
-//{
-//    this->ChangeVisible(false);
-//    gauge1->setVisible(true);
-//    updateTimer1->start();
-//}
+void frmMain::on_btnGauge1_clicked()
+{
+    this->ChangeVisible(false);
+    gauge1->setVisible(true);
+    updateTimer1->start();
+}
 
-//void frmMain::UpdateData1()
-//{
-//    int value=qrand()%100;
-//    gauge1->setValue(value);
-//    ui->labValue->setText(tr("当前值:%1").arg(value));
-//}
+void frmMain::UpdateData1()
+{
+
+    bool flag1 = true;
+    bool flag2 = true;
+    QString strflag1;
+    QString strflag2;
+
+    QFile file("/home/pi/mytest/hello-world/data.txt");
+     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+         //return;
+        qDebug()<<"Can't open the file!"<<endl;
+     QString line;
+     QTextStream in(&file);
+//     for(int i =0 ; i < index2; i++){
+//         line = in.readLine();
+//     }
+//     line = in.readLine();
+//     index2 = index2 + 1;
+     //int value = 0;
+
+     if (!line.isNull()) {
+         QStringList strs = line.split(",");
+         strflag1 = strs.at(2).mid(0);
+         strflag2 = strs.at(3).mid(0);
+         if(strflag1.compare("1") == 0){
+             flag1 = true;
+         }else{
+             flag1 = false;
+         }
+         if(strflag2.compare("1") == 0){
+             flag2 = true;
+         }else{
+             flag2 = false;
+         }
+     }
+     file.close();
+     //int value=qrand()%100;
+     //gauge1->setValue(value);
+     if(!flag1 && !flag2){
+         gauge1->SetGraphColor(Qt::green);
+     }else if(flag1 && !flag2){
+         gauge1->SetGraphColor(Qt::yellow);
+     }else{
+         gauge1->SetGraphColor(Qt::red);
+     }
+    //ui->labValue->setText(tr("当前值:%1").arg(value));
+}
 
 void frmMain::on_btnGauge2_clicked()
 {
     this->ChangeVisible(true);
-    gauge2->setVisible(true);    
+    gauge2->setVisible(true);
+    updateTimer1->start();
     updateTimer2->start();
     updateTimer6->start();
 }
@@ -235,22 +278,22 @@ void frmMain::on_btnGauge2_clicked()
 void frmMain::UpdateData2()
 {
     //定时读取制定文件
-    QFile file("/home/pi/mytest/goodata/test.txt");
+    QFile file("/home/pi/mytest/hello-world/data.txt");
      if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
          //return;
         qDebug()<<"Can't open the file!"<<endl;
      QString line;
      QTextStream in(&file);
-     for(int i =0 ; i < index2; i++){
-         line = in.readLine();
-     }
-     line = in.readLine();
-     index2 = index2 + 1;
+//     for(int i =0 ; i < index2; i++){
+//         line = in.readLine();
+//     }
+//     line = in.readLine();
+//     index2 = index2 + 1;
      int value = 0;
 
      if (!line.isNull()) {
          QStringList strs = line.split(",");
-         QString valuestr = strs.at(0).mid(1);
+         QString valuestr = strs.at(0).mid(0);
          value = valuestr.toInt();
      }
      file.close();
@@ -319,17 +362,17 @@ void frmMain::UpdateData6()
 {
     //int value1=qrand()%100;
     //int value2=qrand()%100;
-    QFile file("/home/pi/mytest/goodata/test.txt");
+    QFile file("/home/pi/mytest/hello-world/data.txt");
      if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
          //return;
         qDebug()<<"Can't open the file!"<<endl;
      QString line;
      QTextStream in(&file);
-     for(int i =0 ; i < index6; i++){
-         line = in.readLine();
-     }
-     line = in.readLine();
-     index6 = index6 + 1;
+//     for(int i =0 ; i < index6; i++){
+//         line = in.readLine();
+//     }
+//     line = in.readLine();
+//     index6 = index6 + 1;
      int value3 = 0;
 
      if (!line.isNull()) {

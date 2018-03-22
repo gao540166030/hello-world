@@ -15,12 +15,12 @@ protected:
 
     QSize sizeHint() const
     {
-        return QSize(200,200);
+        return QSize(100,100);
     }
 
     QSize minimumSizeHint() const
     {
-        return QSize(150,150);
+        return QSize(75,75);
     }
 
 private:
@@ -49,9 +49,11 @@ private:
     QTimer* updateTimer;
     QPointF m_center;
     QRectF m_pieRect;
+    QColor graphcolor;
 
 public slots:
     void setValue(qreal value);
+    void SetGraphColor(QColor c);
 
 private slots:
     void UpdateGraph();
