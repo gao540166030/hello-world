@@ -1,0 +1,19 @@
+Removed Pin From Net: NetName=GND Pin=P3-1
+Removed Pin From Net: NetName=GPIO17 Pin=P3-2
+Removed Pin From Net: NetName=VCC Pin=P3-3
+Change Component Designator: OldDesignator=P5 NewDesignator=P3
+Added Component: Designator=LS1(BUZZ12)
+Added Component: Designator=Q2(SOT-23-3)
+Added Component: Designator=R2(R0805)
+Added Pin To Net: NetName=GND Pin=LS1-2
+Added Pin To Net: NetName=VCC Pin=Q2-2
+Added Pin To Net: NetName=GPIO17 Pin=R2-1
+Added Pin To Net: NetName=NetLS1_1 Pin=LS1-1
+Added Pin To Net: NetName=NetLS1_1 Pin=Q2-3
+Added Net: Name=NetLS1_1
+Added Pin To Net: NetName=NetQ2_1 Pin=Q2-1
+Added Pin To Net: NetName=NetQ2_1 Pin=R2-2
+Added Net: Name=NetQ2_1
+Added Member To Class: ClassName=Sheet Member=Component LS1 Bell
+Added Member To Class: ClassName=Sheet Member=Component Q2 2YT8550
+Added Member To Class: ClassName=Sheet Member=Component R2 1k
