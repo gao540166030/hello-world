@@ -263,7 +263,7 @@ void frmMain::UpdateData1()
      }else{
          gauge1->SetGraphColor(Qt::red);
      }
-    //ui->labValue->setText(tr("µ±Ç°Öµ:%1").arg(value));
+    //ui->labValue->setText(tr("å½“å‰å€¼:%1").arg(value));
 }
 
 void frmMain::on_btnGauge2_clicked()
@@ -277,7 +277,7 @@ void frmMain::on_btnGauge2_clicked()
 
 void frmMain::UpdateData2()
 {
-    //¶¨Ê±¶ÁÈ¡ÖÆ¶¨ÎÄ¼ş
+    //å®šæ—¶è¯»å–åˆ¶å®šæ–‡ä»¶
     QFile file("/home/pi/mytest/hello-world/data.txt");
      if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
          //return;
@@ -297,10 +297,10 @@ void frmMain::UpdateData2()
          value = valuestr.toInt();
      }
      file.close();
-    //lineµÄÊı¾İ½á¹¹[40,5,0,1]
+    //lineçš„æ•°æ®ç»“æ„[40,5,0,1]
     gauge2->setValue(value);
     int value2 = gauge61->m_value;
-    ui->labValue->setText(tr("µ±Ç°Öµ:ÎÂ¶È%1¡æ Êª¶È%2RH").arg(value).arg(value2));
+    ui->labValue->setText(tr("å½“å‰å€¼:æ¸©åº¦%1â„ƒ æ¹¿åº¦%2RH").arg(value).arg(value2));
 }
 
 //void frmMain::on_btnGauge3_clicked()
@@ -313,7 +313,7 @@ void frmMain::UpdateData2()
 
 //void frmMain::UpdateData3(qreal value)
 //{
-//    ui->labValue->setText(tr("µ±Ç°Öµ:%1").arg(value));
+//    ui->labValue->setText(tr("å½“å‰å€¼:%1").arg(value));
 //}
 
 //void frmMain::on_btnGauge4_clicked()
@@ -333,7 +333,7 @@ void frmMain::UpdateData2()
 //    gauge41->setValue(value1);
 //    gauge42->setValue(value2);
 //    gauge43->setValue(value3);
-//    ui->labValue->setText(tr("µ±Ç°Öµ:%1 %2 %3").arg(value1).arg(value2).arg(value3));
+//    ui->labValue->setText(tr("å½“å‰å€¼:%1 %2 %3").arg(value1).arg(value2).arg(value3));
 //}
 
 //void frmMain::on_btnGauge5_clicked()
@@ -347,7 +347,7 @@ void frmMain::UpdateData2()
 //{
 //    int value=qrand()%100;
 //    gauge5->setValue(value);
-//    ui->labValue->setText(tr("µ±Ç°Öµ:%1").arg(value));
+//    ui->labValue->setText(tr("å½“å‰å€¼:%1").arg(value));
 //}
 
 void frmMain::on_btnGauge6_clicked()
@@ -384,7 +384,7 @@ void frmMain::UpdateData6()
     gauge61->setValue(value3);
     gauge62->setValue(value3);
     gauge63->setValue(value3);
-    ui->labValue->setText(tr("µ±Ç°Öµ:%1").arg(value3));
+    ui->labValue->setText(tr("å½“å‰å€¼:%1").arg(value3));
 }
 
 //void frmMain::on_btnGauge7_clicked()
@@ -404,7 +404,7 @@ void frmMain::UpdateData6()
 //    gauge71->setValue(value1);
 //    gauge72->setValue(value2);
 //    gauge73->setValue(value3);
-//    ui->labValue->setText(tr("µ±Ç°Öµ:%1 %2 %3").arg(value1).arg(value2).arg(value3));
+//    ui->labValue->setText(tr("å½“å‰å€¼:%1 %2 %3").arg(value1).arg(value2).arg(value3));
 //}
 
 //void frmMain::on_btnProgressBar_clicked()
@@ -436,7 +436,7 @@ void frmMain::UpdateData6()
 //    mybattery2->setValue(value2);
 //    mybattery3->setValue(value3);
 //    mybattery4->setValue(value4);
-//    ui->labValue->setText(tr("µ±Ç°Öµ:%1 %2 %3 %4").arg(value1).arg(value2).arg(value3).arg(value4));
+//    ui->labValue->setText(tr("å½“å‰å€¼:%1 %2 %3 %4").arg(value1).arg(value2).arg(value3).arg(value4));
 //}
 
 //void frmMain::on_btnCoolBar_clicked()
@@ -447,7 +447,7 @@ void frmMain::UpdateData6()
 
 //void frmMain::UpdateData9(int value)
 //{
-//    ui->labValue->setText(tr("µ±Ç°Öµ:%1").arg(value));
+//    ui->labValue->setText(tr("å½“å‰å€¼:%1").arg(value));
 //}
 
 //void frmMain::on_btnIndicator_clicked()
@@ -474,5 +474,7 @@ void frmMain::UpdateData6()
 //    myindicator4->setValue(value4);
 //    myindicator5->setValue(value5);
 
-//    ui->labValue->setText(tr("µ±Ç°Öµ:%1 %2 %3 %4 %5").arg(value1).arg(value2).arg(value3).arg(value4).arg(value5));
+//    ui->labValue->setText(tr("å½“å‰å€¼:%1 %2 %3 %4 %5").arg(value1).arg(value2).arg(value3).arg(value4).arg(value5));
 //}
+
+
