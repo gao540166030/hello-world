@@ -8,23 +8,23 @@ myGauge2::myGauge2(QWidget *parent) :
 
 void myGauge2::initVariables()
 {
-    //ÍâÔ²°ë¾¶
+    //å¤–åœ†åŠå¾„
     m_outerRadius=width()>height() ? height()/2: width()/2;
-    //ÄÚÔ²°ë¾¶
+    //å†…åœ†åŠå¾„
     m_innerRadius=m_outerRadius/8*7;
-    //¸²¸Ç°ë¾¶
+    //è¦†ç›–åŠå¾„
     m_coverCircleRadius=m_outerRadius/8*4+10;
-    //ÓĞÉ«°å°ë¾¶
+    //æœ‰è‰²æ¿åŠå¾„
     m_colorCircleRadius=m_outerRadius/8*5;
-    //¾ÓÖĞ
+    //å±…ä¸­
     m_center=rect().center();
-    //³õÊ¼Öµ
+    //åˆå§‹å€¼
     m_value=0;
-    //µ±Ç°Öµ
+    //å½“å‰å€¼
     m_currentValue=0;
-    //¸üĞÂÊ±¼ä
+    //æ›´æ–°æ—¶é—´
     updateTimer=new QTimer(this);
-    //10ºÁÃë·¢ËÍÒ»´Î
+    //10æ¯«ç§’å‘é€ä¸€æ¬¡
     updateTimer->setInterval(10);
     //
     connect(updateTimer,SIGNAL(timeout()),this,SLOT(UpdateGraph()));
@@ -36,25 +36,25 @@ void myGauge2::initVariables()
 
 void myGauge2::paintEvent(QPaintEvent *)
 {
-    //»­±ÊÀàËÆÓÚ£¬µÍË®Æ½»æÖÆÀà
+    //ç”»ç¬”ç±»ä¼¼äºï¼Œä½æ°´å¹³ç»˜åˆ¶ç±»
     QPainter painter(this);
-    //È¥³ı¾â³İ
+    //å»é™¤é”¯é½¿
     painter.setRenderHints(QPainter::Antialiasing|QPainter::TextAntialiasing);
     resetVariables(&painter);
-    //ÍâÔ²
+    //å¤–åœ†
     drawOuterCircle(&painter);
-    //ÄÚÔ²
+    //å†…åœ†
     drawInnerCircle(&painter);
     drawColorPie(&painter);
-    //ÄÚ²¿Ãæ°å
+    //å†…éƒ¨é¢æ¿
     drawCoverCircle(&painter);
-    //»æÖÆ¿Ì¶ÈÏß
+    //ç»˜åˆ¶åˆ»åº¦çº¿
     drawMark(&painter);
-    //»æÖÆÖ¸Õë
+    //ç»˜åˆ¶æŒ‡é’ˆ
     drawIndicator(&painter);
-    //ÖĞĞÄÔ²
+    //ä¸­å¿ƒåœ†
     drawCoverBall(&painter);
-    //Êı¾İÃæ°å
+    //æ•°æ®é¢æ¿
     drawTextRect(&painter);
     painter.end();
 }
@@ -74,7 +74,7 @@ void myGauge2::drawOuterCircle(QPainter *painter)
     painter->drawEllipse(m_center,m_outerRadius,m_outerRadius);
     painter->restore();
 }
-//ÄÚ²¿ÍâÎ§¸²¸ÇÉÏÉ«
+//å†…éƒ¨å¤–å›´è¦†ç›–ä¸Šè‰²
 void myGauge2::drawInnerCircle(QPainter *painter)
 {
     painter->save();
@@ -91,17 +91,17 @@ void myGauge2::drawInnerCircle(QPainter *painter)
 
     painter->restore();
 }
-//»æÖÆ¿Ì¶ÈÏß
+//ç»˜åˆ¶åˆ»åº¦çº¿
 void myGauge2::drawMark(QPainter *painter)
 {
     painter->save();
     painter->setPen(Qt::white);
     painter->translate(m_center);
-    //270¶È²ğ³É50¶È
+    //270åº¦æ‹†æˆ50åº¦
     qreal dAngle=(qreal)270/50;
-    //ÆğÊ¼45¶È
+    //èµ·å§‹45åº¦
     qreal startAngle=45;
-    //³õÊ¼ÖµÎª0¶È
+    //åˆå§‹å€¼ä¸º0åº¦
     int value=0;
     QString strValue;
     for(int i=0;i<=50;i++)
@@ -145,7 +145,7 @@ void myGauge2::drawMark(QPainter *painter)
     painter->restore();
 }
 
-//ÖĞ¼äÔ²ĞÄ
+//ä¸­é—´åœ†å¿ƒ
 void myGauge2::drawCoverBall(QPainter *painter)
 {
     painter->save();
@@ -163,7 +163,7 @@ void myGauge2::drawCoverBall(QPainter *painter)
 
     painter->restore();
 }
-//Êı¾İÃæ°å
+//æ•°æ®é¢æ¿
 void myGauge2::drawTextRect(QPainter *painter)
 {
     painter->save();
@@ -191,7 +191,7 @@ void myGauge2::drawTextRect(QPainter *painter)
     painter->drawText(textRect,Qt::AlignHCenter|Qt::AlignVCenter,strValue);
     painter->restore();
 }
-//ÄÚ²¿Ãæ°å
+//å†…éƒ¨é¢æ¿
 void myGauge2::drawCoverCircle(QPainter *painter)
 {
     painter->save();
@@ -203,7 +203,7 @@ void myGauge2::drawCoverCircle(QPainter *painter)
     painter->restore();
 }
 
-//»æÖÆ¾¯½äÏß
+//ç»˜åˆ¶è­¦æˆ’çº¿
 void myGauge2::drawColorPie(QPainter *painter)
 {
     painter->save();
@@ -230,14 +230,14 @@ void myGauge2::drawColorPie(QPainter *painter)
 
     painter->restore();
 }
-//»æÖÆÖ¸Õë
+//ç»˜åˆ¶æŒ‡é’ˆ
 void myGauge2::drawIndicator(QPainter *painter)
 {
-    //»æÖÆÖ¸Õë
+    //ç»˜åˆ¶æŒ‡é’ˆ
     painter->save();
 
     painter->translate(m_center);
-    //Ã¿Ğ¡¸ñÏò½øÇ°½ø½Ç¶È
+    //æ¯å°æ ¼å‘è¿›å‰è¿›è§’åº¦
     qreal increment=(qreal)270/50;
     qreal changedAngle=45+increment*m_currentValue;
     painter->rotate(changedAngle);
@@ -262,7 +262,7 @@ void myGauge2::drawIndicator(QPainter *painter)
     painter->restore();
 }
 
-//ÖØÖÃ½çÃæ
+//é‡ç½®ç•Œé¢
 void myGauge2::resetVariables(QPainter *painter)
 {
     m_outerRadius=width()>height() ? height()/2: width()/2;
@@ -273,7 +273,7 @@ void myGauge2::resetVariables(QPainter *painter)
     m_center=rect().center();
 }
 
-//¸³Öµ
+//èµ‹å€¼
 void myGauge2::setValue(qreal value)
 {
     if(value>m_value)
@@ -323,3 +323,4 @@ void myGauge2::UpdateGraph()
     }
     update();
 }
+
