@@ -286,3 +286,4 @@ void myGauge1::UpdateGraph()
     }
     update();
 }
+
