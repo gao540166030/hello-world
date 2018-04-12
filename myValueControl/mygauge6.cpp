@@ -27,17 +27,17 @@ void myGauge6::paintEvent(QPaintEvent *)
     {
         painter.setRenderHints(QPainter::Antialiasing|QPainter::TextAntialiasing);
     }
-    //ÉèÖÃ¿Ì¶ÈÏß
+    //è®¾ç½®åˆ»åº¦çº¿
     drawVariables(&painter);
-    //ÉèÖÃºÚÉ«±³¾°
+    //è®¾ç½®é»‘è‰²èƒŒæ™¯
     drawBackground(&painter);
-    //ÉèÖÃÖù×´Í¼
+    //è®¾ç½®æŸ±çŠ¶å›¾
     drawMark(&painter);
-    //ÉèÖÃÖµ
+    //è®¾ç½®å€¼
     drawTextRect(&painter);
-    //Öù×´Í¼±³¾°
+    //æŸ±çŠ¶å›¾èƒŒæ™¯
     drawUnderRect(&painter);
-    //Öù×´Í¼¶¯Ì¬ÉÏÉıÏÂ½µ
+    //æŸ±çŠ¶å›¾åŠ¨æ€ä¸Šå‡ä¸‹é™
     drawGauge(&painter);
 
 }
@@ -263,3 +263,4 @@ void myGauge6::setAnimating(bool animate)
     m_bAnimate=animate;
     update();
 }
+
