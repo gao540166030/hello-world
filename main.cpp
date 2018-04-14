@@ -4,6 +4,7 @@
 #include <stdint.h>  
 #include <string.h>
 
+//Pin definition
 #define DHT11_MAX_TIME 40  
 #define DHT11PIN 7 
 
@@ -18,9 +19,10 @@
 #define Slant	 26
 #define HC_SR501 1		
 
+// temperature sensor cache value
 int dht11_val[5]={0,0,0,0,0}; 
 
-
+//function definition
 void init(void);
 void LED(int number);
 void Fan(int number);
@@ -28,9 +30,10 @@ void Bell();
 int dht11_read_val(int *Humidity,int *Temperature);
 
 
-
+//The main function
 int main(void)
 {
+    //initialisation
     int Humidity    = 0;
     int Temperature = 0;
     int HC_SR501_Flag = 0;
@@ -44,35 +47,42 @@ int main(void)
     
     while(1)
     {
+      //3 seconds to update data
       delay(3000);
       if( dht11_read_val(&Humidity,&Temperature) )
       {
+          //The temperature is less than 25, green LED is on, the fan does not working
           if(Temperature <= 25)
           {
             LED(1);
             Fan(0);
           }
+          //The temperature is less than 30, the yellow LED is on, the fan working
           else if(Temperature <= 30)
           {
             LED(2);
             Fan(1);  
           }
+          //The temperature is higher than 30, the red LED is on, the fan working
           else if(Temperature > 30)
           {
             LED(3);
             Fan(1);  
           }
           
+          //Identify if someone is close
           if(digitalRead(HC_SR501) == HIGH)
           {
-            printf("Someone is closing! \n");
-            HC_SR501_Flag = 1;
-            LED(5);
+            printf("Someone is closing! \n");// print someone is closing
+            HC_SR501_Flag = 1;// Flag the value 1 
+            LED(5);// Yellow LED on
+              
+            //Determine whether to tilt  
             if(digitalRead(Slant) == LOW)
             {
-              printf("Something is slanting! \n"); 
-              LED(7);
-              Slant_Flag = 1;
+              printf("Something is slanting! \n"); //print something is slating
+              LED(7);//Red and Yellow LED on
+              Slant_Flag = 1; //Flag the value 1 
             }
             else
             {
@@ -82,31 +92,38 @@ int main(void)
           
           else
           {
-            printf("Noanybody! \n");
-            HC_SR501_Flag = 0;
+            printf("Noanybody! \n"); //print Noanybody
+            HC_SR501_Flag = 0; // Flag the value 0
+              
+             //Determine whether to tilt
             if(digitalRead(Slant) == LOW)
             {
-              printf("Something is slanting! \n"); 
-              LED(6);
-              Slant_Flag = 1;
+              printf("Something is slanting! \n"); //print something is slating
+              LED(6); //Red LED on
+              Slant_Flag = 1;//Flag the value 1
             }
+              
             else
             {
-              LED(4);
-              Slant_Flag = 0;
+              LED(4);//Green LED on
+              Slant_Flag = 0;//Flag the value 0
             }  
           }
           
+          // Print data, including temperature, humidity, close to, tilt
           printf("[%d,%d,%d,%d]\n",dht11_val[2],dht11_val[0],HC_SR501_Flag,Slant_Flag); 
 
-          if((fp=fopen("data.txt","w+"))==NULL)//如果文件不存在，新建文件，写数据 
+          //Write data to the current directory text
+          if((fp=fopen("data.txt","w+"))==NULL)//If the file does not exist, create a new file and write data 
           { 
             //printf("Can not open file.\n"); 
             exit(0); 
           } 
           sprintf(buf, "%d,%d,%d,%d", Temperature, Humidity, HC_SR501_Flag, Slant_Flag);
-          fwrite(buf,strlen(buf),1 ,fp);//试验数据，文件存在时尝试，文件不存在时尝试 
+          fwrite(buf,strlen(buf),1 ,fp);//Test data, try when the file exists, try when the file does not exist 
           fclose(fp);
+          
+          // Judging whether the buzzer needs to make a sound
           if(Slant_Flag == 1)
           {
             Bell();  
@@ -117,6 +134,8 @@ int main(void)
 
 }
 
+
+// Initialise the IO port
 void init(void)
 {
     wiringPiSetup() ; 
@@ -139,6 +158,9 @@ void init(void)
     Fan(1);
     digitalWrite(0,HIGH);
 }
+
+
+//LED function definition
 void LED(int number)
 {
     switch(number)
@@ -176,6 +198,8 @@ void LED(int number)
     }
 }
 
+
+//fan function definition
 void Fan(int number)
 {
     switch(number)
@@ -188,6 +212,9 @@ void Fan(int number)
     }
 }
 
+
+
+//Bell function definition
 void Bell()
 {
     int i;
@@ -201,6 +228,9 @@ void Bell()
     }
 }
 
+
+
+//Read the temperature and humidity function definition
 int dht11_read_val(int *Humidity,int *Temperature)  
 {  
   int counter=0;  
@@ -242,6 +272,7 @@ int dht11_read_val(int *Humidity,int *Temperature)
     } 
   }
   
+    
   // verify cheksum and print the verified data 
   if(dht11_val[4]==((dht11_val[0]+dht11_val[1]+dht11_val[2]+dht11_val[3])& 0xFF)) 
   {  
