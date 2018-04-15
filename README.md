@@ -6,7 +6,7 @@ In this project, three sensors are used to combine a sound system to monitor rel
 
 The second module is about security monitoring system. The purpose of this module is to detect the safety conditions around the cultural relics environment and to achieve real-time alarm function when the environment around the relics is not safe. It is consisted of two sensors. One is the HC-SR501 human infrared sensor, which makes real-time response to anyone close to the artifacts and alarm. As is known to all, when the museum is closed, there should be no one trying to get close to the relics. So once someone is approaching, the manager must be notified in real time and the yellow LED should be on (yellow LED light for this system). The other is the inclination sensor, which is used to detect whether artifacts showcases are unlawfully destroyed or not. Inclination sensors are installed in all corners of the cultural exhibition. Once it detects the illegal destruction of exhibition cabinets, there will be real-time notification to managers and the alarm will set off (red LED light, buzzer alarm). If everything goes normal, the LED light stays green. 
 
-##Draft:
+## Draft:
 
 The PowerPoint is available at https://prezi.com/view/XcmfoeFi8ZuTkDuknr3L/
 
