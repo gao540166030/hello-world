@@ -14,13 +14,14 @@ The demonstration of security monitoring system is available at https://www.yout
 
 The demonstration of the temperature and humidity detection module is available at https://www.youtube.com/watch?v=Rew0veGNES8
 
-## Final version:
+## Final Version:
 
 YouTube: https://www.youtube.com/watch?v=2-BqilmDRl4
 
 ## Social Media: 
 
 Facebook link is https://www.facebook.com/JIALEI666
+
 
 
 
