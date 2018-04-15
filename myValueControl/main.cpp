@@ -9,24 +9,24 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    //支持中文编码
+    //Support Chinese encoding
     QTextCodec *codec=QTextCodec::codecForLocale();
     QTextCodec::setCodecForLocale(codec);
     QTextCodec::setCodecForCStrings(codec);
     QTextCodec::setCodecForTr(codec);
 
-    //窗体居中显示
+    //Form centered display
     QDesktopWidget *desktop=QApplication::desktop();
     int width=desktop->width();
     int height=desktop->height();
 
     frmMain w;
-    //设置窗口没有最大化按钮
+    //Setting window has no maximize button
     w.setWindowFlags(Qt::WindowMinimizeButtonHint);
     w.move((width-w.width())/2,(height-w.height())/2);
     w.setFixedSize(w.width(),w.height());
     w.show();
-    //应用样式
+    //Apply style
     QApplication::setStyle(QStyleFactory::create("Plastique"));
 
     return a.exec();
