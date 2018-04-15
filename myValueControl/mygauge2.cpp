@@ -8,23 +8,23 @@ myGauge2::myGauge2(QWidget *parent) :
 
 void myGauge2::initVariables()
 {
-    //外圆半径
+    //Outer radius
     m_outerRadius=width()>height() ? height()/2: width()/2;
-    //内圆半径
+    //Inner radius
     m_innerRadius=m_outerRadius/8*7;
-    //覆盖半径
+    //Coverage radius
     m_coverCircleRadius=m_outerRadius/8*4+10;
-    //有色板半径
+    //Colored plate radius
     m_colorCircleRadius=m_outerRadius/8*5;
-    //居中
+    //Centered
     m_center=rect().center();
-    //初始值
+    //Initial value
     m_value=0;
-    //当前值
+    //The current value
     m_currentValue=0;
-    //更新时间
+    //Update time
     updateTimer=new QTimer(this);
-    //10毫秒发送一次
+    //Update 10 milliseconds
     updateTimer->setInterval(10);
     //
     connect(updateTimer,SIGNAL(timeout()),this,SLOT(UpdateGraph()));
@@ -36,25 +36,25 @@ void myGauge2::initVariables()
 
 void myGauge2::paintEvent(QPaintEvent *)
 {
-    //画笔类似于，低水平绘制类
+    //Brushes are similar to low-level drawing classes
     QPainter painter(this);
-    //去除锯齿
+    //Anti-aliasing
     painter.setRenderHints(QPainter::Antialiasing|QPainter::TextAntialiasing);
     resetVariables(&painter);
-    //外圆
+    //Foreign circle
     drawOuterCircle(&painter);
-    //内圆
+    //Internal circle
     drawInnerCircle(&painter);
     drawColorPie(&painter);
-    //内部面板
+    //Internal panel
     drawCoverCircle(&painter);
-    //绘制刻度线
+    //Draw a tick
     drawMark(&painter);
-    //绘制指针
+    //Draw pointer
     drawIndicator(&painter);
-    //中心圆
+    //Center circle
     drawCoverBall(&painter);
-    //数据面板
+    //Data panel
     drawTextRect(&painter);
     painter.end();
 }
@@ -74,7 +74,7 @@ void myGauge2::drawOuterCircle(QPainter *painter)
     painter->drawEllipse(m_center,m_outerRadius,m_outerRadius);
     painter->restore();
 }
-//内部外围覆盖上色
+//Internal peripheral coverage
 void myGauge2::drawInnerCircle(QPainter *painter)
 {
     painter->save();
@@ -91,17 +91,17 @@ void myGauge2::drawInnerCircle(QPainter *painter)
 
     painter->restore();
 }
-//绘制刻度线
+//Draw a tick
 void myGauge2::drawMark(QPainter *painter)
 {
     painter->save();
     painter->setPen(Qt::white);
     painter->translate(m_center);
-    //270度拆成50度
+    //270 degrees into 50 degrees
     qreal dAngle=(qreal)270/50;
-    //起始45度
+    //Starting 45 degrees
     qreal startAngle=45;
-    //初始值为0度
+    //The initial value is 0 degrees
     int value=0;
     QString strValue;
     for(int i=0;i<=50;i++)
@@ -145,7 +145,7 @@ void myGauge2::drawMark(QPainter *painter)
     painter->restore();
 }
 
-//中间圆心
+//Middle circle center
 void myGauge2::drawCoverBall(QPainter *painter)
 {
     painter->save();
@@ -163,7 +163,7 @@ void myGauge2::drawCoverBall(QPainter *painter)
 
     painter->restore();
 }
-//数据面板
+//Data panel
 void myGauge2::drawTextRect(QPainter *painter)
 {
     painter->save();
@@ -191,7 +191,7 @@ void myGauge2::drawTextRect(QPainter *painter)
     painter->drawText(textRect,Qt::AlignHCenter|Qt::AlignVCenter,strValue);
     painter->restore();
 }
-//内部面板
+//Internal panel
 void myGauge2::drawCoverCircle(QPainter *painter)
 {
     painter->save();
@@ -203,7 +203,7 @@ void myGauge2::drawCoverCircle(QPainter *painter)
     painter->restore();
 }
 
-//绘制警戒线
+//Draw a warning line
 void myGauge2::drawColorPie(QPainter *painter)
 {
     painter->save();
@@ -230,14 +230,14 @@ void myGauge2::drawColorPie(QPainter *painter)
 
     painter->restore();
 }
-//绘制指针
+//Draw pointer
 void myGauge2::drawIndicator(QPainter *painter)
 {
-    //绘制指针
+    //Draw pointer
     painter->save();
 
     painter->translate(m_center);
-    //每小格向进前进角度
+    //Each cell moves forward
     qreal increment=(qreal)270/50;
     qreal changedAngle=45+increment*m_currentValue;
     painter->rotate(changedAngle);
@@ -262,7 +262,7 @@ void myGauge2::drawIndicator(QPainter *painter)
     painter->restore();
 }
 
-//重置界面
+//Reset the interface
 void myGauge2::resetVariables(QPainter *painter)
 {
     m_outerRadius=width()>height() ? height()/2: width()/2;
@@ -273,7 +273,7 @@ void myGauge2::resetVariables(QPainter *painter)
     m_center=rect().center();
 }
 
-//赋值
+//Set value
 void myGauge2::setValue(qreal value)
 {
     if(value>m_value)
