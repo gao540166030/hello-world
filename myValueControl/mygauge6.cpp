@@ -27,17 +27,17 @@ void myGauge6::paintEvent(QPaintEvent *)
     {
         painter.setRenderHints(QPainter::Antialiasing|QPainter::TextAntialiasing);
     }
-    //设置刻度线
+    //Set tick marks
     drawVariables(&painter);
-    //设置黑色背景
+    //Set black background
     drawBackground(&painter);
-    //设置柱状图
+    //Setting the histogram
     drawMark(&painter);
-    //设置值
+    //Setting value
     drawTextRect(&painter);
-    //柱状图背景
+    //Histogram background
     drawUnderRect(&painter);
-    //柱状图动态上升下降
+    //Histogram rises dynamically
     drawGauge(&painter);
 
 }
